@@ -19,9 +19,16 @@
 
         let balance = 100;
         let receivedAmount = 20;
+        let chai = 40;
 
-        total = balance + receivedAmount;
-        console.log("New Balance: " + total);
+        balance = balance + receivedAmount;
+        console.log("New Balance: " + balance);
+
+        balance += receivedAmount;
+        console.log("New Balance: " + balance);
+
+        balance -= chai;
+        console.log("Removing Chai expenses: ",balance)
     </script>
 </body>
 </html>
