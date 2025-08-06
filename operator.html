@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operators</title>
 </head>
+
 <body>
     <h2>Use of Operators</h2>
     <script>
 
         console.log("Arithmetic Operators")
         let a = 10;
-        let b = 4;~
+        let b = 4; ~
 
-        console.log("Addition: ",a + b);
-        console.log("Subtraction: ",a - b);
-        console.log("Multiplication: ",a * b);
-        console.log("Division: ",a / b);
-        console.log("Modulus: ",a % b);
+            console.log("Addition: ", a + b);
+        console.log("Subtraction: ", a - b);
+        console.log("Multiplication: ", a * b);
+        console.log("Division: ", a / b);
+        console.log("Modulus: ", a % b);
 
         console.log("Assignment Operators")
 
@@ -32,20 +34,20 @@
         console.log("New Balance: " + balance);
 
         balance -= chai;
-        console.log("Removing Chai expenses: ",balance)
+        console.log("Removing Chai expenses: ", balance)
 
         let num = 10;
         num *= 3;
-        console.log("Multiplication: ",num);
+        console.log("Multiplication: ", num);
 
         num /= 2;
-        console.log("Divivsion: ",num);
+        console.log("Divivsion: ", num);
 
         num %= 2;
-        console.log("Modulus: ",num);
+        console.log("Modulus: ", num);
 
         console.log("Increment & Decrement Operators")
-        let n =5;
+        let n = 5;
         console.log("Before increment n: ", n);
 
         n++;
@@ -67,13 +69,23 @@
 
         let p = 10;
         let q = 20;
-        document.write("Greater than: ", p > q );
-        document.write("<br> Less than: ", p < q );
-        document.write("<br> Double Equals to: ", p == q );
-        document.write("<br> Strict Equals to: ", p === q );
-        document.write("<br> Not Equals to: ", p != q );
-        document.write("<br> Less than or Equals to: ", p <= q );
-        document.write("<br> Greater than or Equals to: ", p >= q );
+        document.write("Greater than: ", p > q);
+        document.write("<br> Less than: ", p < q);
+        document.write("<br> Double Equals to: ", p == q);
+        document.write("<br> Strict Equals to: ", p === q);
+        document.write("<br> Not Equals to: ", p != q);
+        document.write("<br> Less than or Equals to: ", p <= q);
+        document.write("<br> Greater than or Equals to: ", p >= q);
+
+        let or = 6 < 10 || 8 > 9;
+        console.log(`Result is ${or}`);
+
+        let and = 6 < 10 && 8 > 9;
+        console.log(`Result is ${and}`); 
+
+        let isBulbOn = false;
+        console.log(`Bulb is ${!isBulbOn}`); 
     </script>
 </body>
+
 </html>
