@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arithmetic Operations</title>
+</head>
+<body>
+    <script>
+        let numA = parseInt(prompt("Enter first number: "));
+        let numB = parseInt(prompt("Enter second number: "));
+
+        let ops = prompt("Enter the operation you wan to perform (+, -, *, /, %): ");
+
+        if(ops = "+"){
+            result = numA + numB;
+        }
+        else if(ops = "-"){
+            result = numA - numB;
+        }
+        else if(ops = "*"){
+            result = numA * numB;
+        }
+        else if(ops = "/"){
+            result = numA / numB;
+        }
+        else if(ops = "%"){
+            result = numA % numB;
+        }
+        else{
+            alert("Invalid Operator")
+        }
+
+        if(!! result || result == 0){
+            console.log(`The Result of ${numA} ${ops} ${numB} is ${result}`);
+        }
+        else{
+            console.log("Invalid Operation")
+        }
+        
+    </script>
+</body>
+</html>
