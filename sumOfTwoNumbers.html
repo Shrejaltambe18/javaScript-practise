@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum of Two Numbers</title>
+    <style>
+        .body{
+            margin: 0;
+            padding: 0;
+            background-color: #E7D3D3;
+        }
+
+        .user-input {
+            display: block;
+            margin: 10px auto;
+            padding: 8px 16px;
+            border-radius: 5px;
+            border: 2px solid #B9375D;
+        }
+
+        .card {
+            background-color: #D25D5D;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 20px 40px;
+            border-radius: 20px;
+            border: 2px solid #B9375D;
+        }
+
+        .user-input:focus{
+            outline: none;
+            border: 2px solid #B9375D;
+        }
+
+        .btn{
+            border: none;
+            border-radius: 5px;
+            padding: 3px 20px;
+            cursor: pointer;
+        }
+
+        .btn-container{
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        #result{
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <input type="text" class="user-input" placeholder="Enter first number" id="num1" />
+        <input type="text" class="user-input" placeholder="Enter second number" id="num2" />
+        <p id="result"></p>
+        <div btn-container>
+            <button class="btn btn-add" onclick="add()">Add</button>
+            <button class="btn btn-clear" onclick="clearInputs()">Clear</button>
+        </div>
+    </div>
+
+    <script>
+        function add(){
+            const inputElement1 = document.getElementById("num1");
+            const inputElement2 = document.getElementById("num2");
+            const resultElement = document.getElementById("result");
+
+            const sum = parseInt(inputElement1.value) + parseInt(inputElement2.value);
+            resultElement.innerText = `Sum is ${sum}`;
+        }
+
+        function clearInputs(){
+            const inputElement1 = document.getElementById("num1");
+            const inputElement2 = document.getElementById("num2");
+            const resultElement = document.getElementById("result");
+
+            inputElement1.value = "";
+            inputElement2.value = "";
+            resultElement.innerText = "";
+        }
+
+    </script>
+</body>
+
+</html>

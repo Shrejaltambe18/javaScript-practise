@@ -7,7 +7,7 @@
     <title>Dom Manipulationt</title>
 </head>
 
-<body>
+<body id="body">
     <h1 id="greeting">Hello User!!</h1>
 
     <button onclick="greetUser('Morning')">Morning</button>
@@ -18,7 +18,32 @@
     <script>
         function greetUser(greeting){
             const greetingElement = document.getElementById("greeting");
-            greetingElement.innerText = `Good ${greeting}!!`;
+            const bodyElement = document.getElementById("body");
+            
+            switch(greeting){
+                case 'Morning':
+                    greetingElement.innerText = "This morning is beautiful..!!";
+                    bodyElement.style.backgroundColor = "#FFD700";
+                    break;
+
+                case 'Afternoon':
+                    greetingElement.innerText = "This afternoon is bright...!!";
+                    bodyElement.style.backgroundColor = "#2F4F4F";
+                    break;
+
+                case 'Evening':
+                    greetingElement.innerText = "This evening is calm..!!";
+                    bodyElement.style.backgroundColor = "#FFDF65";
+                    break;
+
+                case 'Night':
+                    greetingElement.innerText = "This night is lovely..!!";
+                    bodyElement.style.backgroundColor = "#AF34FF";
+                    break;
+
+                default:
+                    greetingElement.innerText = "Hello User!!";
+            }
         }
     </script>
 </body>
