@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events in JavaScript</title>
+    <style>
+        .mouse-events{
+            background-color: tomato;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,6 +30,16 @@
         onkeypress="keyfun2" 
         onkeyup="keyfun3" 
     />
+
+    </br>
+    </br>
+    <div class="mouse-events" 
+        onmouseover="mousefun1()" 
+        onmouseout="mousefun2()"
+        onmousemove="mousefun3()"
+        onmouseup="mousefun4()"
+        >Mouse Events
+    </div>
 
     <script>
         /* Click Events */
@@ -43,6 +62,27 @@
 
         function keyfun3() {
             console.log("Key fun3");
+        }
+
+        /* Mouse Events */
+        function mousefun1()
+        {
+            console.log("Mouse is over the div");
+        }
+
+        function mousefun2()
+        {
+            console.log("Mouse is out of the div");
+        }
+
+        function mousefun3()
+        {
+            console.log(`Mouse is moving over the div ${Math.random()}`);
+        }
+
+        function mousefun4()
+        {
+            console.log("onmouse up event triggered");
         }
     </script>
 </body>
