@@ -16,7 +16,7 @@
     </style>
 </head>
 
-<body>
+<body onload="console.log('Page loaded!')">
 
     <button onclick="fun1()" ondblclick="fun2()">Click Me to see the Magic</button>
     </br>
@@ -40,6 +40,10 @@
         onmouseup="mousefun4()"
         >Mouse Events
     </div>
+
+    </br>
+    </br>
+    <input type="text" placeholder="Type something here.." onchange="changefun()" />
 
     <script>
         /* Click Events */
@@ -83,6 +87,12 @@
         function mousefun4()
         {
             console.log("onmouse up event triggered");
+        }
+
+        /* onchange event */
+        function changefun()
+        {
+            console.log("Hello from onChange function");
         }
     </script>
 </body>
