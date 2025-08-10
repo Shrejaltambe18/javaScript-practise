@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Manipulationt</title>
+</head>
+
+<body>
+    <h1 id="greeting">Hello User!!</h1>
+
+    <button onclick="greetUser('Morning')">Morning</button>
+    <button onclick="greetUser('Afternoon')">Afternoon</button>
+    <button onclick="greetUser('Evening')">Evening</button>
+    <button onclick="greetUser('Night')">Night</button>
+
+    <script>
+        function greetUser(greeting){
+            const greetingElement = document.getElementById("greeting");
+            greetingElement.innerText = `Good ${greeting}!!`;
+        }
+    </script>
+</body>
+
+</html>
