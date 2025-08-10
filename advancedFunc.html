@@ -7,6 +7,7 @@
 </head>
 <body>
     <script>
+        /* Accepting arguments and returning values */
         function kmToMeters(km)
         {
             const meters = km * 1000;
@@ -15,6 +16,7 @@
         const res = kmToMeters(5);
         console.log("5 kilometers is equal to: ",res,"meters");
 
+        /* Accepting arguments but not returning values */
         function cmToMelimeters(cm)
         {
             const milmeters = cm * 10;
@@ -22,6 +24,7 @@
         }
         cmToMelimeters(3);
         
+        /* Not Accepting arguments but returning values */
         function kmToM()
         {
             const km = parseInt(prompt("Enter distance in kilometers:"));
@@ -31,6 +34,7 @@
         res1 = kmToM();
         console.log(`Total kilometers is equal to ${res1}`);
 
+        /* Not Accepting arguments and Not returning values */
         function cmToMm()
         {
             const cm = parseInt(prompt("Enter cm: "));
