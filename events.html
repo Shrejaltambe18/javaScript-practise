@@ -13,14 +13,36 @@
     </br>
     </br>
     <button onclick="fun1()" ondblclick="fun2()">Double Click Me to see the Magic</button>
+    </br>
+    </br>
+    <input 
+        type="text" , 
+        onkeydown="keyfun1" 
+        onkeypress="keyfun2" 
+        onkeyup="keyfun3" 
+    />
 
     <script>
+        /* Click Events */
         function fun1() {
             console.log("Hello from fun1")
         }
 
         function fun2() {
             console.log("Hello from fun2")
+        }
+
+        /* Key Events */
+        function keyfun1() {
+            console.log("Key fun1");
+        }
+
+        function keyfun2() {
+            console.log("Key fun2");
+        }
+
+        function keyfun3() {
+            console.log("Key fun3");
         }
     </script>
 </body>
