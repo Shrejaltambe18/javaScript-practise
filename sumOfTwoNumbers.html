@@ -43,12 +43,18 @@
 
         .btn-container{
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             margin-top: 30px;
         }
 
         #result{
             font-size: 15px;
+        }
+
+        #err1,err2{
+            color: black;
+            font-size: 16px;
+            margin: 0;
         }
     </style>
 </head>
@@ -56,9 +62,13 @@
 <body>
     <div class="card">
         <input type="text" class="user-input" placeholder="Enter first number" id="num1" />
+        <p id="err1"></p>
+
         <input type="text" class="user-input" placeholder="Enter second number" id="num2" />
+        <p id="err2"></p>
+
         <p id="result"></p>
-        <div btn-container>
+        <div class="btn-container">
             <button class="btn btn-add" onclick="add()">Add</button>
             <button class="btn btn-clear" onclick="clearInputs()">Clear</button>
         </div>
@@ -70,7 +80,24 @@
             const inputElement2 = document.getElementById("num2");
             const resultElement = document.getElementById("result");
 
-            const sum = parseInt(inputElement1.value) + parseInt(inputElement2.value);
+            const errElement1 = document.getElementById("err1");
+            const errElement2 = document.getElementById("err2");
+
+            const val1 = parseInt(inputElement1.value);
+            if(isNaN(val1)){
+                errElement1.innerText = "Please enter a valid first number.";
+                return;
+            }
+            errElement1.innerText = "";
+
+            const val2 = parseInt(inputElement2.value);
+            if(isNaN(val2)){
+                errElement2.innerText = "Please enter a valid second number.";
+                return;
+            }
+            errElement2.innerText = "";
+
+            const sum = val1 + val2;
             resultElement.innerText = `Sum is ${sum}`;
         }
 
@@ -82,6 +109,8 @@
             inputElement1.value = "";
             inputElement2.value = "";
             resultElement.innerText = "";
+            errElement1.innerText = "";
+            errElement2.innerText = "";
         }
 
     </script>
