@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulb On and Off</title>
+    <style>
+        body{
+            background-color: #DCD0A8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .heading{
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .card{
+            background-color: white;
+            width: 350px;
+            height: 350px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 50px auto;
+            border-radius: 10px;
+            padding: 20px 40px;
+        }
+
+        .img-bulb{
+            width: 100%;
+            height: 290px;
+            object-fit: contain;
+        }
+
+        .btn-container{
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .btn{
+            min-width: 80px;
+            cursor: pointer;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .btn-off{
+            background-color: red;
+            color: white;
+        }
+
+        .btn-on{
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+<body id="body">
+    <h1 class="heading" id="heading">Bulb On Off</h1>
+    <div class="card" id="card">
+        <img src="images/bulbOFF.png" class="img-bulb"  id="bulb"  alt="bulbOff">
+
+        <div class="btn-container">
+            <button class="btn btn-off" onclick="turnOff()">OFF</button>
+            <button class="btn btn-on" onclick="turnOn()">ON</button>
+        </div>
+    </div>
+
+    <script>
+        function turnOn(){
+            const bulbElement = document.getElementById("bulb");
+            const bodyElement = document.getElementById("body");
+            const cardElement = document.getElementById("card");
+            const headingElement = document.getElementById("heading");
+
+            bulbElement.src = "images/bulbON.png";
+            bodyElement.style.backgroundColor = "#80dfff";
+            headingElement.style.color = "#0000cc";
+            cardElement.style.backgroundColor = "#cce5ff";
+        }
+
+        function turnOff(){
+            const bulbElement = document.getElementById("bulb");
+            const bodyElement = document.getElementById("body");
+            const cardElement = document.getElementById("card");
+            const headingElement = document.getElementById("heading");
+
+            bulbElement.src = "images/bulbOFF.png";
+            bodyElement.style.backgroundColor = "#404040";
+            headingElement.style.color = "#ffffff";
+            cardElement.style.backgroundColor = "#666666";
+        }
+    </script>
+</body>
+</html>
