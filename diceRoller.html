@@ -19,7 +19,25 @@
         function roll() {
             const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
             console.log(randomNumber);
-            
+            const diceElement = document.getElementById("dice");
+            if(randomNumber == 1){
+                diceElement.src = "images/1.png";
+            }
+            else if(randomNumber == 2){
+                diceElement.src = "images/2.png";
+            }
+            else if(randomNumber == 3){
+                diceElement.src = "images/3.png";
+            }
+            else if(randomNumber == 4){
+                diceElement.src = "images/4.png";
+            }
+            else if(randomNumber == 5){
+                diceElement.src = "images/5.png";
+            }
+            else if(randomNumber == 6){
+                diceElement.src = "images/6.png";
+            }
         }
 
     </script>
