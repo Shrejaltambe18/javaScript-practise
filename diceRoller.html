@@ -7,11 +7,45 @@
     <title>Dice Roller</title>
 </head>
 
-<body>
-    <h1>Dice Roller</h1>
-    <img src="images/1.png" width="200px" height="200px" id="dice" />
-    <button onclick="roll()">Roll the Dice</button>
+<style>
+    .heading{
+        text-align: center;
+    }
 
+    .image-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn{
+        width: fit-content;
+        background-color: black;
+        color: white;
+        border-radius: 5px;
+        padding: 10px 10px;
+        border: 1px solid black;
+        font-size: 18px;
+    }
+
+    .btn-container{
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+</style>
+
+<body>
+    <h1 class="heading">Dice Roller</h1>
+    <div class="image-container">
+        <img src="images/1.png" width="250px" height="250px" id="dice" class="image" />
+    </div>
+
+    <div class="btn-container">
+        <button class="btn" onclick="roll()">Roll the Dice</button>
+    </div>
+    
     <script>
         const max = 6;
         const min = 1;
