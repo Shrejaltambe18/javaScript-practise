@@ -19,32 +19,36 @@
         Students[5] = "Ruhi";
         console.log(Students);
 
-        //length function
+        //length() function
         const marks = [87,54,78,99,66,32,12,56,45,77,96,52];
         let total = marks.length;
         console.log("Total number of elements in the array: ",total);
 
-        //push function = Add new element at the end
+        //push() function = Add new element at the end
         Students.push("Sejal");
         console.log(Students);
 
-        //pop function = Remove element from end
+        //pop() function = Remove element from end
         Students.pop();
         console.log(Students);
 
-        //unshift function = Add element at the start
+        //unshift() function = Add element at the start
         Students.unshift("Preeta");
         Students.unshift("Naira");
         console.log(Students);
 
-        //shift function = Delete elements from start
+        //shift() function = Delete elements from start
         Students.shift();
         console.log(Students);
 
-        //splice function = Perform deletion and insertion at once
+        //splice() function = Perform deletion and insertion at once
         //Syntax = splice(index, no of elements to delete, elements to insert)
         Students.splice(1,2,"Om","Sejal","Veena")
         console.log(Students);
+
+        //join() function = convert array to string 
+        console.log(Students.join(","));
+        console.log(Students.join(" # "))
     </script>
 </body>
 </html>
