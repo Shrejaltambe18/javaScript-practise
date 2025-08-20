@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs on Array and Loops</title>
+</head>
+<body>
+    <script>
+        //check number is odd or not if yes then display sum of all odd numbers
+        const numbers = [54,78,67,45,98,44,33,98,78,65,49,78];
+        console.log(numbers);
+        let sum = 0;
+        for(let i=0; i<numbers.length; i++){
+            if(numbers[i] % 2 == 1){
+                sum += numbers[i];
+                console.log(numbers[i]);
+            }
+        }
+        console.log("Sum of odd numbers: ",sum);
+    </script>
+</body>
+</html>
