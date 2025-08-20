@@ -7,17 +7,21 @@
 </head>
 <body>
     <script>
-        //check number is odd or not if yes then display sum of all odd numbers
+        //check number is odd or even and display the sum of both
         const numbers = [54,78,67,45,98,44,33,98,78,65,49,78];
         console.log(numbers);
-        let sum = 0;
+        let sumOdd = 0;
+        let sumEven = 0;
         for(let i=0; i<numbers.length; i++){
             if(numbers[i] % 2 == 1){
-                sum += numbers[i];
-                console.log(numbers[i]);
+                sumOdd += numbers[i];
+            }
+            else{
+                sumEven += numbers[i];
             }
         }
-        console.log("Sum of odd numbers: ",sum);
+        console.log("Sum of odd numbers: ",sumOdd);
+        console.log("Sum of even numbers: ",sumEven);
     </script>
 </body>
 </html>
