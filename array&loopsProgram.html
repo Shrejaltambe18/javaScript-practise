@@ -22,6 +22,17 @@
         }
         console.log("Sum of odd numbers: ",sumOdd);
         console.log("Sum of even numbers: ",sumEven);
+
+        //Display the largest number
+        const num = [5, 6, 4, 3, 8, 9, 7, 12, 21, 6];
+        let largest = num[0];
+
+        for(let i=1; i<num.length; i++){
+            if(num[i] > largest){
+                largest = num[i];
+            }
+        }
+        console.log("Largest number is: ",largest);
     </script>
 </body>
 </html>
