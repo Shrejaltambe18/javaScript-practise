@@ -38,13 +38,24 @@
 
     <script>
 
+    function getRandomEmoji(){
+        const emojiList = ["🐵","🐺", "🐶","🐱","🐭","🐰", "🦊","🐻","🐼","🐨", "🐯", "🦁"];
+        const min = 0;
+        const max = emojiList.length;
+        const randomEmojiIndex = Math.floor(Math.random() * (max - min) + min);
+        return emojiList[randomEmojiIndex];
+    }
+    const emoji = getRandomEmoji();
+    console.log(emoji);
+
         const students = ["Sejal","Priyanka","Akansha","Rahul","Ishan","Kavya","Raj"];
         const studentsList = document.getElementById("students-list");
 
         for(let i=0; i<students.length; i++){
+            const emoji = getRandomEmoji();
             studentsList.innerHTML = studentsList.innerHTML + `
             <div class="students-card">
-                <h2>${students[i]}</h2>    
+                <h2> Hellooo ${students[i]} ${emoji}</h2>    
             </div>
             `;
         }
