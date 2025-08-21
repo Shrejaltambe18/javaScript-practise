@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards Using Array and Loops</title>
+    <style>
+        .container{
+            background-color: rgb(54, 203, 154);
+        }
+
+        .text{
+            text-align: center;
+            padding: 10px;
+        }
+
+        .students-container{
+            border: 1px solid black;
+            margin: 5px;
+            padding: 5px;
+            background-color: white;
+        }
+
+        .students-card{
+            background-color: #f1a747;
+            margin: 5px;
+            padding: 2px;
+            padding-left: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="container">
+    <h1 class="text">Students List</h1>
+
+    <div class="students-container" id="students-list"></div>
+
+    <script>
+
+        const students = ["Sejal","Priyanka","Akansha","Rahul","Ishan","Kavya","Raj"];
+        const studentsList = document.getElementById("students-list");
+
+        for(let i=0; i<students.length; i++){
+            studentsList.innerHTML = studentsList.innerHTML + `
+            <div class="students-card">
+                <h2>${students[i]}</h2>    
+            </div>
+            `;
+        }
+    </script>
+</body>
+</html>
