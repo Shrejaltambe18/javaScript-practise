@@ -1,32 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clock</title>
     <style>
-        .clock{
+        @font-face {
+            font-family: "Digital Clock";
+            src: url('./digital-7.ttf') format('truetype');
+
+        }
+
+        .clock {
+            border: 5px solid black;
+            width: 300px;
+            border-radius: 10px;
+            margin: 50px auto;
+            padding: 20px 50px;
+           
+        }
+        .clock-screen{
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 48px;
-            font-family: 'Courier New', Courier, monospace;
-            border: 2px solid black;
-            width: 300px;
+            font-family: "Digital Clock";
+            background-color: #7b9177;
+            font-weight: bold;
+            padding: 20px;
             border-radius: 10px;
-            margin: 50px auto;
         }
     </style>
 </head>
+
 <body>
     <div class="clock">
-        <div id="hh">HH</div>
-        <div>:</div>
-        <div id="mm">MM</div>
-        <div>:</div>
-        <div id="ss">SS</div>
+        <div class="clock-screen">
+            <div id="hh">HH</div>
+            <div>:</div>
+            <div id="mm">MM</div>
+            <div>:</div>
+            <div id="ss">SS</div>
+        </div>
     </div>
 
-    <script></script>
+    <script>
+        function showCurrentTime() {
+            const hhElement = document.getElementById("hh");
+            const mmElement = document.getElementById("mm");
+            const ssElement = document.getElementById("ss");
+
+            const date = new Date();
+            hhElement.innerText = date.getHours();
+            mmElement.innerText = date.getMinutes();
+            ssElement.innerText = date.getSeconds();
+        }
+        
+        setInterval(showCurrentTime, 1000);
+    </script>
 </body>
+
 </html>
