@@ -7,6 +7,7 @@
 </head>
 <body>
     <script>
+        //Date() function
         const date = new Date();
         console.log(date);
         console.log(date.toDateString());
@@ -25,6 +26,12 @@
         const year = date.getFullYear();
 
         console.log(`Today's Date is: ${day}/${month}/${year}`);
+
+        //setTimeOut() function
+        function sayHello() {
+            console.log("Hello World!!");
+        }
+        setTimeout(sayHello, 4000);  //2000 milisecond= 2 sec
     </script>
 </body>
 </html>
