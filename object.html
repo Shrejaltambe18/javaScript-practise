@@ -18,10 +18,42 @@
                 Village: "Dadh Bk",
                 Taluka: "Rahata",
                 Dist: "Ahilyanagar"
-            }
+            }  //array
         };
 
+        //Accessing the keys and data
         console.log(student);
+        console.log(student.address);
+        console.log(student.isMarried ? "Yes" : "No");
+        console.log(student["hobbies-of-sejal"]);
+        console.log(Object.keys(student));
+        console.log(Object.values(student));
+
+        //Adding new keys
+        student.Currentcity = "Pune";
+        student["whattsapp"] = "7499089739";
+        console.log(student);
+        console.log(student.whattsapp);
+
+        //Deleting the keys
+        delete student.Currentcity;
+        console.log(student);
+
+        //This is a Object
+        const data = {
+            0 : 2,
+            1 : 3,
+            2 : 9,
+            3 : 7,
+            4 : 20,
+            length: 9,
+        };
+        console.log(data);
+        console.log(data.length);
+
+        //This is a array (Array also uses the object)
+        const arr = [2, 3, 9, 7, 20];
+        console.log(arr);
     </script>
 </body>
 </html>
