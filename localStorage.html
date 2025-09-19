@@ -6,15 +6,31 @@
     <title>Local Storage</title>
 </head>
 <body>
-    <h1>Hello Guest!!....</h1>
+    <h1 id="greeting">Hello Guest!!....</h1>
 
     <input type="text" id="name-input"/>
     <button onclick="saveName()" type="button">Submit</button>
 
     <script>
-        
 
-        
+        const loadName = () => {
+            const greetingElement = document.getElementById("greeting");
+            const savedName = localStorage.getItem("name");
+            if (savedName) {
+                greetingElement.innerText = `Hello ${savedName}!`;
+            }
+        }
+        loadName();
+
+        const saveName = () => {
+            const nameInputElement = document.getElementById("name-input");
+            const userName = nameInputElement.value;
+
+            localStorage.setItem("name",userName);
+
+            loadName();
+        };
+
     </script>
 </body>
 </html>
