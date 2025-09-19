@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .message-box {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 1000;
+        }
+        .message-box.show {
+            opacity: 1;
+        }
+        .message-box.success {
+            background-color: #4CAF50;
+        }
+        .message-box.error {
+            background-color: #f44336;
+        }
+        h1 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #1f2937;
+        }
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #374151;
+        }
+        #answer-buttons {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 768px) {
+            #answer-buttons {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        button {
+            background-color: #e5e7eb;
+            color: #1f2937;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s;
+            font-size: 1.125rem;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d1d5db;
+        }
+        button.correct {
+            background-color: #22c55e;
+            color: white;
+        }
+        button.wrong {
+            background-color: #ef4444;
+            color: white;
+        }
+        #next-btn, #restart-btn {
+            font-weight: 600;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+        }
+        #next-btn {
+            background-color: #2563eb;
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+        #next-btn:hover {
+            background-color: #1d4ed8;
+        }
+        #restart-btn {
+            background-color: #16a34a;
+        }
+        #restart-btn:hover {
+            background-color: #15803d;
+        }
+        .hidden {
+            display: none;
+        }
+        .score-text {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: #374151;
+        }
+        .score-number {
+            font-weight: 700;
+            color: #2563eb;
+        }
+        .total-questions-number {
+            font-weight: 700;
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div id="quiz-container" class="container">
+        <h1>Simple Quiz App</h1>
+        
+        <!-- Quiz Section -->
+        <div id="quiz-content">
+            <h2 id="question"></h2>
+            <div id="answer-buttons"></div>
+            <button id="next-btn" class="hidden">Next</button>
+        </div>
+
+        <!-- Score Section -->
+        <div id="score-content" class="hidden">
+            <h2>Quiz Complete!</h2>
+            <p class="score-text">You scored <span id="score" class="score-number"></span> out of <span id="total-questions" class="total-questions-number"></span></p>
+            <button id="restart-btn">Restart Quiz</button>
+        </div>
+    </div>
+    
+    <!-- Message Box -->
+    <div id="message-box" class="message-box"></div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the capital of France?",
+                answers: [
+                    { text: "Berlin", correct: false },
+                    { text: "Madrid", correct: false },
+                    { text: "Paris", correct: true },
+                    { text: "Rome", correct: false }
+                ]
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                answers: [
+                    { text: "Earth", correct: false },
+                    { text: "Mars", correct: true },
+                    { text: "Jupiter", correct: false },
+                    { text: "Venus", correct: false }
+                ]
+            },
+            {
+                question: "What is the largest ocean on Earth?",
+                answers: [
+                    { text: "Atlantic Ocean", correct: false },
+                    { text: "Indian Ocean", correct: false },
+                    { text: "Arctic Ocean", correct: false },
+                    { text: "Pacific Ocean", correct: true }
+                ]
+            },
+            {
+                question: "Who wrote 'Romeo and Juliet'?",
+                answers: [
+                    { text: "Charles Dickens", correct: false },
+                    { text: "William Shakespeare", correct: true },
+                    { text: "Jane Austen", correct: false },
+                    { text: "Mark Twain", correct: false }
+                ]
+            }
+        ];
+
+        const questionElement = document.getElementById("question");
+        const answerButtonsElement = document.getElementById("answer-buttons");
+        const nextButton = document.getElementById("next-btn");
+        const quizContent = document.getElementById("quiz-content");
+        const scoreContent = document.getElementById("score-content");
+        const scoreElement = document.getElementById("score");
+        const totalQuestionsElement = document.getElementById("total-questions");
+        const restartButton = document.getElementById("restart-btn");
+        const messageBox = document.getElementById("message-box");
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            quizContent.classList.remove("hidden");
+            scoreContent.classList.add("hidden");
+            nextButton.classList.add("hidden");
+            showQuestion();
+        }
+
+        function showQuestion() {
+            resetState();
+            let currentQuestion = questions[currentQuestionIndex];
+            questionElement.innerText = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
+            
+            currentQuestion.answers.forEach(answer => {
+                const button = document.createElement("button");
+                button.innerText = answer.text;
+                button.classList.add("bg-gray-200", "text-gray-800", "font-medium", "py-3", "px-6", "rounded-lg", "hover:bg-gray-300", "transition-colors", "duration-300", "text-lg");
+                if (answer.correct) {
+                    button.dataset.correct = answer.correct;
+                }
+                button.addEventListener("click", selectAnswer);
+                answerButtonsElement.appendChild(button);
+            });
+        }
+
+        function resetState() {
+            while(answerButtonsElement.firstChild) {
+                answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+            }
+        }
+        
+        function selectAnswer(e) {
+            const selectedButton = e.target;
+            const isCorrect = selectedButton.dataset.correct === "true";
+            
+            if (isCorrect) {
+                selectedButton.classList.add("correct");
+                score++;
+                showMessage("Correct!", "success");
+            } else {
+                selectedButton.classList.add("wrong");
+                showMessage("Wrong!", "error");
+            }
+
+            // Disable all other buttons and highlight the correct one
+            Array.from(answerButtonsElement.children).forEach(button => {
+                if (button.dataset.correct === "true") {
+                    button.classList.add("correct");
+                }
+                button.disabled = true;
+            });
+            nextButton.classList.remove("hidden");
+        }
+
+        function showMessage(message, type) {
+            messageBox.innerText = message;
+            messageBox.classList.add("show", type);
+            setTimeout(() => {
+                messageBox.classList.remove("show", type);
+            }, 1500);
+        }
+
+        function handleNextButton() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                showQuestion();
+                nextButton.classList.add("hidden");
+            } else {
+                showScore();
+            }
+        }
+        
+        function showScore() {
+            quizContent.classList.add("hidden");
+            scoreContent.classList.remove("hidden");
+            scoreElement.innerText = score;
+            totalQuestionsElement.innerText = questions.length;
+        }
+
+        nextButton.addEventListener("click", () => {
+            handleNextButton();
+        });
+
+        restartButton.addEventListener("click", () => {
+            startQuiz();
+        });
+
+        // Initial call to start the quiz when the page loads
+        document.addEventListener("DOMContentLoaded", startQuiz);
+
+    </script>
+</body>
+</html>
