@@ -15,6 +15,27 @@
             color: #6B3F69;
         }
 
+        .todo-item{
+            border: 4px double #0055ff;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            background-color: #ccddff;
+            color: #0055ff;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-del{
+            background-color: tomato;
+            color: white;
+            font-size: 8px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            height: 12px;
+        }
+
         .task-container{
             height: 250px;
             overflow-y: scroll;
@@ -27,6 +48,23 @@
             margin: 10px;
         }
 
+        .task-input{
+            width: 50%;
+            border-radius: 10px;
+            padding: 5px 10px;
+            font-size: 20px;
+            border: 1px solid #0055ff;
+        }
+
+        .btn-add{
+            border-radius: 40px;
+            background-color: #0055ff;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 
@@ -34,8 +72,12 @@
     <h1 class="heading">To Do App</h1>
 
     <div id="task-container" class="task-container">
+
         <div class="task-input-container">
+
             <input type="text" id="task-input" placeholder="Enter a task" class="task-input" />
+            <button onclick="addTask()" class="btn-add">Add Task</button>
+            
         </div>
     </div>
 
