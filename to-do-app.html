@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do App</title>
     <style>
-        .heading{
-            text-align: center;
+        body {
+            background-color: #DDC3C3;
         }
+
+        .heading {
+            text-align: center;
+            color: #6B3F69;
+        }
+
+        .task-container{
+            height: 250px;
+            overflow-y: scroll;
+        }
+
+        .task-input-container{
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 10px;
+        }
+
     </style>
 </head>
+
 <body>
     <h1 class="heading">To Do App</h1>
+
+    <div id="task-container" class="task-container">
+        <div class="task-input-container">
+            <input type="text" id="task-input" placeholder="Enter a task" class="task-input" />
+        </div>
+    </div>
+
+    <script></script>
 </body>
+
 </html>
