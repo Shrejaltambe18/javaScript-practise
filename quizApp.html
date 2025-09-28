@@ -1,195 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz App</title>
+    <title>Simple Quiz App</title>
     <style>
         body {
-            background-color: #f3f4f6;
             font-family: 'Inter', sans-serif;
+            background-color: #120A2E;
+            color: #E2E8F0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(circle, #220F52 5%, #120A2E 95%);
         }
+
         .container {
             width: 100%;
             max-width: 600px;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 32px;
+            border-radius: 16px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .message-box {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            z-index: 1000;
-        }
-        .message-box.show {
-            opacity: 1;
-        }
-        .message-box.success {
-            background-color: #4CAF50;
-        }
-        .message-box.error {
-            background-color: #f44336;
-        }
+
         h1 {
-            font-size: 1.875rem;
+            font-size: 30px;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 24px;
             text-align: center;
-            color: #1f2937;
+            color: #A968F5;
         }
+
         h2 {
-            font-size: 1.25rem;
+            font-size: 20px;
             font-weight: 600;
-            margin-bottom: 1rem;
-            color: #374151;
+            margin-bottom: 16px;
+            color: #B8B8EB;
         }
+
         #answer-buttons {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
+            grid-template-columns: 240px 240px;
+            justify-content: center;
+            gap: 16px;
         }
-        @media (min-width: 768px) {
-            #answer-buttons {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        button {
-            background-color: #e5e7eb;
-            color: #1f2937;
+
+        .btn {
+            background-color: #2F2459;
+            color: #D1D5DB;
             font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            transition: background-color 0.3s;
-            font-size: 1.125rem;
+            padding: 12px 24px;
+            border-radius: 8px;
             border: none;
             cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 18px;
+            box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
         }
-        button:hover {
-            background-color: #d1d5db;
+
+        .btn:hover {
+            background-color: #4A3A8A;
         }
-        button.correct {
-            background-color: #22c55e;
-            color: white;
-        }
-        button.wrong {
-            background-color: #ef4444;
-            color: white;
-        }
-        #next-btn, #restart-btn {
+
+        .next-btn,
+        .restart-btn {
             font-weight: 600;
             color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            margin-top: 24px;
+            width: 100%;
             border: none;
             cursor: pointer;
             transition: background-color 0.3s;
-            border-radius: 0.5rem;
-            padding: 0.75rem 1.5rem;
         }
-        #next-btn {
-            background-color: #2563eb;
-            margin-top: 1.5rem;
-            width: 100%;
+
+        .next-btn {
+            background: linear-gradient(90deg, #3C6CF4, #806AF9);
         }
-        #next-btn:hover {
-            background-color: #1d4ed8;
+
+        .next-btn:hover {
+            background: linear-gradient(90deg, #2D58D8, #6B57E2);
         }
-        #restart-btn {
-            background-color: #16a34a;
+
+        .restart-btn {
+            background: linear-gradient(90deg, #f63294, #c3094d);
         }
-        #restart-btn:hover {
-            background-color: #15803d;
+
+        .restart-btn:hover {
+            background: linear-gradient(90deg, #E2479B, #C2205E);
         }
-        .hidden {
-            display: none;
-        }
+
         .score-text {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: #374151;
+            font-size: 20px;
+            margin-bottom: 24px;
+            color: #D1D5DB;
+            text-align: center;
         }
-        .score-number {
+
+        .score-num,
+        .total-num {
             font-weight: 700;
-            color: #2563eb;
         }
-        .total-questions-number {
-            font-weight: 700;
-            color: #4b5563;
+
+        .score-num {
+            color: #806AF9;
+        }
+
+        .total-num {
+            color: #6B57E2;
+        }
+
+        .btn.correct {
+            background: linear-gradient(90deg, #16A34A, #16A34A);
+            color: white;
+        }
+
+        .btn.wrong {
+            background: linear-gradient(90deg, #DC2626, #DC2626);
+            color: white;
         }
     </style>
 </head>
-<body class="bg-gray-100">
+
+<body>
 
     <div id="quiz-container" class="container">
         <h1>Simple Quiz App</h1>
-        
-        <!-- Quiz Section -->
+
         <div id="quiz-content">
             <h2 id="question"></h2>
             <div id="answer-buttons"></div>
-            <button id="next-btn" class="hidden">Next</button>
+            <button id="next-btn" class="next-btn" style="display: none;">Next</button>
         </div>
 
-        <!-- Score Section -->
-        <div id="score-content" class="hidden">
-            <h2>Quiz Complete!</h2>
-            <p class="score-text">You scored <span id="score" class="score-number"></span> out of <span id="total-questions" class="total-questions-number"></span></p>
-            <button id="restart-btn">Restart Quiz</button>
+        <div id="score-content" style="display: none;">
+            <h2 style="text-align:center;">Quiz Complete!</h2>
+            <p class="score-text">You scored <span id="score" class="score-num"></span> out of <span
+                    id="total-questions" class="total-num"></span></p>
+            <button id="restart-btn" class="restart-btn">Restart Quiz</button>
         </div>
     </div>
-    
-    <!-- Message Box -->
-    <div id="message-box" class="message-box"></div>
 
     <script>
         const questions = [
             {
                 question: "What is the capital of France?",
-                answers: [
-                    { text: "Berlin", correct: false },
-                    { text: "Madrid", correct: false },
-                    { text: "Paris", correct: true },
-                    { text: "Rome", correct: false }
-                ]
+                answers:[{ text: "Paris", correct: true },
+                          { text: "Berlin", correct: false }, 
+                          { text: "Madrid", correct: false }, 
+                          { text: "Rome", correct: false }
+                        ]
             },
-            {
-                question: "Which planet is known as the Red Planet?",
-                answers: [
-                    { text: "Earth", correct: false },
-                    { text: "Mars", correct: true },
-                    { text: "Jupiter", correct: false },
-                    { text: "Venus", correct: false }
-                ]
-            },
-            {
-                question: "What is the largest ocean on Earth?",
-                answers: [
-                    { text: "Atlantic Ocean", correct: false },
-                    { text: "Indian Ocean", correct: false },
-                    { text: "Arctic Ocean", correct: false },
-                    { text: "Pacific Ocean", correct: true }
-                ]
-            },
-            {
-                question: "Who wrote 'Romeo and Juliet'?",
-                answers: [
-                    { text: "Charles Dickens", correct: false },
-                    { text: "William Shakespeare", correct: true },
-                    { text: "Jane Austen", correct: false },
-                    { text: "Mark Twain", correct: false }
-                ]
-            }
+
+            { question: "Which planet is known as the Red Planet?", answers: [{ text: "Mars", correct: true }, { text: "Earth", correct: false }, { text: "Jupiter", correct: false }, { text: "Venus", correct: false }] },
+            { question: "What is the largest ocean on Earth?", answers: [{ text: "Pacific Ocean", correct: true }, { text: "Atlantic Ocean", correct: false }, { text: "Indian Ocean", correct: false }, { text: "Arctic Ocean", correct: false }] },
+            { question: "Who wrote 'Romeo and Juliet'?", answers: [{ text: "William Shakespeare", correct: true }, { text: "Charles Dickens", correct: false }, { text: "Jane Austen", correct: false }, { text: "Mark Twain", correct: false }] }
         ];
 
         const questionElement = document.getElementById("question");
@@ -200,7 +171,6 @@
         const scoreElement = document.getElementById("score");
         const totalQuestionsElement = document.getElementById("total-questions");
         const restartButton = document.getElementById("restart-btn");
-        const messageBox = document.getElementById("message-box");
 
         let currentQuestionIndex = 0;
         let score = 0;
@@ -208,94 +178,77 @@
         function startQuiz() {
             currentQuestionIndex = 0;
             score = 0;
-            quizContent.classList.remove("hidden");
-            scoreContent.classList.add("hidden");
-            nextButton.classList.add("hidden");
+            quizContent.style.display = "block";
+            scoreContent.style.display = "none";
+            nextButton.style.display = "none";
             showQuestion();
         }
 
         function showQuestion() {
-            resetState();
+            answerButtonsElement.innerHTML = "";
             let currentQuestion = questions[currentQuestionIndex];
             questionElement.innerText = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
-            
-            currentQuestion.answers.forEach(answer => {
-                const button = document.createElement("button");
-                button.innerText = answer.text;
-                button.classList.add("bg-gray-200", "text-gray-800", "font-medium", "py-3", "px-6", "rounded-lg", "hover:bg-gray-300", "transition-colors", "duration-300", "text-lg");
-                if (answer.correct) {
-                    button.dataset.correct = answer.correct;
-                }
-                button.addEventListener("click", selectAnswer);
-                answerButtonsElement.appendChild(button);
-            });
+
+            const buttonsHTML = currentQuestion.answers.map((answer, index) => {
+                const correctAttribute = answer.correct ? `data-correct="true"` : '';
+                return `<button class="btn" ${correctAttribute} data-index="${index}">${answer.text}</button>`;
+            }).join('');
+
+            answerButtonsElement.innerHTML = buttonsHTML;
+
+            answerButtonsElement.onclick = selectAnswer;
         }
 
-        function resetState() {
-            while(answerButtonsElement.firstChild) {
-                answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-            }
-        }
-        
         function selectAnswer(e) {
+            if (e.target.tagName !== 'BUTTON') return;
+
             const selectedButton = e.target;
-            const isCorrect = selectedButton.dataset.correct === "true";
-            
+            const isCorrect = selectedButton.getAttribute('data-correct') === "true";
+
             if (isCorrect) {
-                selectedButton.classList.add("correct");
                 score++;
-                showMessage("Correct!", "success");
+                selectedButton.style.background = '#16A34A';
+                selectedButton.style.color = 'white';
             } else {
-                selectedButton.classList.add("wrong");
-                showMessage("Wrong!", "error");
+                selectedButton.style.background = '#DC2626';
+                selectedButton.style.color = 'white';
             }
 
-            // Disable all other buttons and highlight the correct one
-            Array.from(answerButtonsElement.children).forEach(button => {
-                if (button.dataset.correct === "true") {
-                    button.classList.add("correct");
+            const allButtons = answerButtonsElement.querySelectorAll('button');
+            allButtons.forEach(button => {
+                const buttonIsCorrect = button.getAttribute('data-correct') === "true";
+                if (buttonIsCorrect) {
+                    button.style.background = '#16A34A';
+                    button.style.color = 'white';
                 }
                 button.disabled = true;
             });
-            nextButton.classList.remove("hidden");
-        }
 
-        function showMessage(message, type) {
-            messageBox.innerText = message;
-            messageBox.classList.add("show", type);
-            setTimeout(() => {
-                messageBox.classList.remove("show", type);
-            }, 1500);
+            nextButton.style.display = "block";
         }
 
         function handleNextButton() {
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
                 showQuestion();
-                nextButton.classList.add("hidden");
+                nextButton.style.display = "none";
             } else {
                 showScore();
             }
         }
-        
+
         function showScore() {
-            quizContent.classList.add("hidden");
-            scoreContent.classList.remove("hidden");
+            quizContent.style.display = "none";
+            scoreContent.style.display = "block";
             scoreElement.innerText = score;
             totalQuestionsElement.innerText = questions.length;
         }
 
-        nextButton.addEventListener("click", () => {
-            handleNextButton();
-        });
+        nextButton.addEventListener("click", handleNextButton);
+        restartButton.addEventListener("click", startQuiz);
 
-        restartButton.addEventListener("click", () => {
-            startQuiz();
-        });
-
-        // Initial call to start the quiz when the page loads
         document.addEventListener("DOMContentLoaded", startQuiz);
-
     </script>
 </body>
+
 </html>

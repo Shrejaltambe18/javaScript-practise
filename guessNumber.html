@@ -7,89 +7,95 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
+            background-color: #120A2E;
+            color: #E2E8F0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
             padding: 20px;
+            background-image: radial-gradient(circle, #220F52 5%, #120A2E 95%);
         }
         .game-container {
             width: 100%;
             max-width: 450px;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         h1 {
-            font-size: 2rem;
+            font-size: 32px;
             font-weight: bold;
-            color: #1f2937;
-            margin-bottom: 1rem;
+            color: #A968F5;
+            margin-bottom: 16px;
         }
         p {
-            font-size: 1rem;
-            color: #4b5563;
-            margin-bottom: 1.5rem;
+            font-size: 16px;
+            color: #B8B8EB;
+            margin-bottom: 24px;
         }
         .input-group {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 16px;
+            margin-bottom: 16px;
         }
         input[type="number"] {
             width: 100px;
-            padding: 0.75rem;
-            font-size: 1.25rem;
+            padding: 12px;
+            font-size: 20px;
             text-align: center;
-            border: 1px solid #d1d5db;
+            background-color: #2F2459;
+            color: #D1D5DB;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
+            box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
         }
         button {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
+            padding: 12px 24px;
+            font-size: 16px;
             font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s;
             border: none;
             color: white;
+            text-transform: uppercase;
         }
         #submit-btn {
-            background-color: #2563eb;
+            background: linear-gradient(90deg, #3C6CF4, #806AF9);
         }
         #submit-btn:hover {
-            background-color: #1d4ed8;
+            background: linear-gradient(90deg, #2D58D8, #6B57E2);
         }
         #restart-btn {
-            background-color: #10b981;
+            background: linear-gradient(90deg, #FF69B4, #E52E71);
             display: none;
-            margin-top: 1.5rem;
+            margin-top: 24px;
         }
         #restart-btn:hover {
-            background-color: #059669;
+            background: linear-gradient(90deg, #E2479B, #C2205E);
         }
         #message {
-            font-size: 1.25rem;
+            font-size: 20px;
             font-weight: bold;
-            color: #1f2937;
             height: 25px;
-            margin-bottom: 1rem;
+            margin-bottom: 16px;
         }
         #guesses {
-            font-size: 0.9rem;
-            color: #6b7280;
+            font-size: 14px;
+            color: #B8B8EB;
         }
     </style>
 </head>
 <body>
 
     <div class="game-container">
-        <h1>Number Guessing Game</h1>
+        <h1>Guess the Number</h1>
         <p>I'm thinking of a number between 1 and 100. Can you guess what it is?</p>
         <div class="input-group">
             <input type="number" id="guess-input" min="1" max="100">
@@ -113,8 +119,9 @@
         function startGame() {
             randomNumber = Math.floor(Math.random() * 100) + 1;
             guessCount = 0;
-            message.textContent = '';
-            guessesDisplay.textContent = 'Guesses: 0';
+            message.innerText = '';
+            message.style.color = '#B8B8EB';
+            guessesDisplay.innerText = 'Guesses: 0';
             guessInput.value = '';
             guessInput.disabled = false;
             submitBtn.disabled = false;
@@ -126,23 +133,23 @@
         function checkGuess() {
             const userGuess = Number(guessInput.value);
             if (userGuess < 1 || userGuess > 100 || isNaN(userGuess)) {
-                message.textContent = 'Please enter a number between 1 and 100.';
+                message.innerText = 'Please enter a number between 1 and 100.';
                 return;
             }
 
             guessCount++;
-            guessesDisplay.textContent = `Guesses: ${guessCount}`;
+            guessesDisplay.innerText = `Guesses: ${guessCount}`;
 
             if (userGuess === randomNumber) {
-                message.textContent = `You got it! The number was ${randomNumber}. You won in ${guessCount} guesses!`;
-                message.style.color = '#10b981';
+                message.innerText = `You got it! The number was ${randomNumber}. You won in ${guessCount} guesses!`;
+                message.style.color = '#10B981';
                 endGame();
             } else if (userGuess > randomNumber) {
-                message.textContent = 'Too high!';
-                message.style.color = '#ef4444';
+                message.innerText = 'Too high!';
+                message.style.color = '#E52E71';
             } else {
-                message.textContent = 'Too low!';
-                message.style.color = '#ef4444';
+                message.innerText = 'Too low!';
+                message.style.color = '#E52E71';
             }
             guessInput.value = '';
             guessInput.focus();
@@ -157,7 +164,6 @@
         submitBtn.addEventListener('click', checkGuess);
         restartBtn.addEventListener('click', startGame);
         
-        // Start the game on page load
         startGame();
 
     </script>

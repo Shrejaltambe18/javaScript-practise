@@ -7,94 +7,99 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
+            background-color: #120A2E;
+            color: #E2E8F0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
             padding: 20px;
+            background-image: radial-gradient(circle, #220F52 5%, #120A2E 95%);
         }
 
         .calendar-container {
             width: 100%;
             max-width: 400px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .calendar-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .calendar-header h2 {
-            font-size: 1.5rem;
+            font-size: 24px;
             font-weight: bold;
-            color: #1f2937;
+            color: #A968F5;
             margin: 0;
         }
 
         .nav-button {
-            background-color: #e5e7eb;
-            color: #1f2937;
+            background-color: #2F2459;
+            color: #D1D5DB;
             border: none;
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.2s;
-            font-size: 1rem;
+            font-size: 18px;
+            box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
         }
 
         .nav-button:hover {
-            background-color: #d1d5db;
+            background-color: #4A3A8A;
         }
 
         .weekdays {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
+            grid-template-columns: repeat(7, 14.28%); 
             text-align: center;
             font-weight: bold;
-            color: #4b5563;
+            color: #B8B8EB;
             margin-bottom: 10px;
         }
 
         .day-grid {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
+            grid-template-columns: repeat(7, calc(100% / 7 - 8px * 6 / 7));
+            gap: 8px;
             text-align: center;
         }
 
         .day {
-            padding: 10px 0;
+            padding: 12px 0;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.2s, color 0.2s;
-            font-size: 1rem;
-            color: #374151;
+            font-size: 18px;
+            color: #6B57E2;
         }
 
         .day:hover {
-            background-color: #d1d5db;
+            background-color: #4A3A8A;
         }
 
         .day.current-month {
-            color: #1f2937;
+            color: #E2E8F0;
         }
         
         .day.today {
-            background-color: #3b82f6;
+            background: linear-gradient(90deg, #FF69B4, #E52E71);
             color: white;
             font-weight: bold;
+            box-shadow: 0 2px 5px rgba(229, 46, 113, 0.4);
         }
         
         .day.today:hover {
-            background-color: #2563eb;
+            background: linear-gradient(90deg, #E2479B, #C2205E);
         }
     </style>
 </head>
@@ -122,8 +127,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const monthYearEl = document.getElementById('month-year');
-            const dayGridEl = document.getElementById('day-grid');
+            const monthYearElement = document.getElementById('month-year');
+            const dayGridElement = document.getElementById('day-grid');
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
 
@@ -138,29 +143,23 @@
                 const lastDayOfMonth = new Date(year, month + 1, 0).getDate();
 
                 const monthName = currentDate.toLocaleString('default', { month: 'long' });
-                monthYearEl.textContent = `${monthName} ${year}`;
+                monthYearElement.textContent = `${monthName} ${year}`;
                 
-                dayGridEl.innerHTML = '';
+                let days = '';
 
-                // Add blank days for the start of the month
                 for (let i = 0; i < firstDayOfMonth; i++) {
-                    const dayEl = document.createElement('div');
-                    dayEl.classList.add('day');
-                    dayGridEl.appendChild(dayEl);
+                    days += `<div class="day"></div>`;
                 }
 
-                // Add days of the month
                 for (let i = 1; i <= lastDayOfMonth; i++) {
-                    const dayEl = document.createElement('div');
-                    dayEl.classList.add('day', 'current-month');
-                    dayEl.textContent = i;
-                    
+                    let classes = 'day current-month';
                     if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-                        dayEl.classList.add('today');
+                        classes += ' today';
                     }
-                    
-                    dayGridEl.appendChild(dayEl);
+                    days += `<div class="${classes}">${i}</div>`;
                 }
+                
+                dayGridElement.innerHTML = days;
             };
 
             prevBtn.addEventListener('click', () => {
