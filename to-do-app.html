@@ -39,12 +39,18 @@
     <h1 class="heading">To Do App</h1>
 
     <div class="todo-container" id="todo-container"></div>
+    
+    <div class="add-todo-container" id="add-todo-container">
+        <input type="text" placeholder="Add a new task" />
+        <button>Add</button>
+    </div>
 
     <script>
         const todoItems = [
             "Go to Gym",
             "Buy Groceries",
-            "Finish Project"
+            "Finish Project",
+            "Buy clothes"
         ];
 
         const loadCards = () => {
