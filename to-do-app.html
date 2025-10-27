@@ -38,20 +38,26 @@
 <body>
     <h1 class="heading">To Do App</h1>
 
-    <div class="todo-container">
-        <div class="task-item">Go to Gym
-            <img src="./images/delete_icon.png" class="delete-icon" />
-        </div>
-        <div class="task-item">Buy Groceries
-            <img src="./images/delete_icon.png" class="delete-icon" />
-        </div>
-        <div class="task-item">Finish Project
-            <img src="./images/delete_icon.png" class="delete-icon" />
-        </div>
-    </div>
+    <div class="todo-container" id="todo-container"></div>
 
     <script>
-        
+        const todoItems = [
+            "Go to Gym",
+            "Buy Groceries",
+            "Finish Project"
+        ];
+
+        const loadCards = () => {
+            const ContainerElement = document.getElementById("todo-container");
+            for(const todoItem of todoItems){
+                ContainerElement.innerHTML += `
+                <div class= "task-item">
+                    ${todoItem}
+                    <img src= "./images/delete_icon.png" class="delete-icon" />
+                    `;
+            }
+        };
+        loadCards();
     </script>
 </body>
 
