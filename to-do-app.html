@@ -49,6 +49,8 @@
         .todo-container{
             width: 500px;
             margin: 0 auto;
+            height: 400px;
+            overflow-y: scroll;
         }
 
         .new-task-input{
@@ -66,9 +68,10 @@
             background-color: #DDC3C3;
             border: 1px solid #6B3F69;
             padding: 5px 20px;
-            border-radius: 50px;
+            border-radius: 15px;
             cursor: pointer;
             margin-left: 20px;
+            height: 35px;
         }
 
         @media (max-width: 600px) {
@@ -90,8 +93,8 @@
     <div class="todo-container" id="todo-container"></div>
     
     <div class="add-todo-container" id="add-todo-container">
-        <input type="text" placeholder="Add a new task" class="new-task-input"/>
-        <button class="add-task-button">Add</button>
+        <input type="text" placeholder="Add a new task" class="new-task-input" id="new-task-input"/>
+        <button class="add-task-button" onclick="addtodo()" >Add</button>
     </div>
 
     <script>
@@ -104,6 +107,8 @@
 
         const loadCards = () => {
             const ContainerElement = document.getElementById("todo-container");
+            ContainerElement.innerHTML = "";
+
             for(const todoItem of todoItems){
                 ContainerElement.innerHTML += `
                 <div class= "task-item">
@@ -113,6 +118,14 @@
             }
         };
         loadCards();
+
+        const addtodo = () => {
+            newTaskInput = document.getElementById("new-task-input");
+            const newTodo = newTaskInput.value;
+            todoItems.push(newTodo);
+            newTaskInput.value = "";
+            loadCards();
+        };
     </script>
 </body>
 
