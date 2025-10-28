@@ -112,7 +112,7 @@
 
             for(const todoItem of todoItems){
                 ContainerElement.innerHTML += `
-                <div class= "task-item">
+                <div class= "task-item" onClick= "deleteTodo('${todoItem}')">
                     ${todoItem}
                     <img src= "./images/delete_icon.png" class="delete-icon" />
                     `;
@@ -129,6 +129,16 @@
             localStorage.setItem("todoItems",JSON.stringify(todoItems));
 
             loadCards();
+        };
+
+        const deleteTodo = (task) => {
+            const indexOfItem = todoItems.indexOf(task);
+            if(indexOfItem > -1){
+                todoItems.splice(indexOfItem, 1);
+
+                localStorage.setItem("todoItems", JSON.stringify(todoItems));
+                loadCards();
+            }
         };
     </script>
 </body>
