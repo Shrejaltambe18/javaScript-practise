@@ -98,14 +98,15 @@
     </div>
 
     <script>
-        const todoItems = [
-            "Go to Gym",
-            "Buy Groceries",
-            "Finish Project",
-            "Buy clothes"
-        ];
+        let todoItems = [];
 
         const loadCards = () => {
+
+            const todoFromLocalStorage = JSON.parse(
+                localStorage.getItem("todoItems") || "[]"
+            );
+            todoItems = todoFromLocalStorage;
+
             const ContainerElement = document.getElementById("todo-container");
             ContainerElement.innerHTML = "";
 
@@ -120,10 +121,13 @@
         loadCards();
 
         const addtodo = () => {
-            newTaskInput = document.getElementById("new-task-input");
-            const newTodo = newTaskInput.value;
-            todoItems.push(newTodo);
+            const newTaskInput = document.getElementById("new-task-input");
+
+            todoItems.push(newTaskInput.value);
             newTaskInput.value = "";
+
+            localStorage.setItem("todoItems",JSON.stringify(todoItems));
+
             loadCards();
         };
     </script>
